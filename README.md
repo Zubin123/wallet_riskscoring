@@ -48,6 +48,49 @@ These features are **protocol-agnostic and extensible**, making the solution sca
        0.2 * interaction_duration_days +
        0.1 * num_approval_events
    )
-3. **Ranking and Scaling**
-   The raw scores are converted to percentile ranks and scaled to a 0–1000 range:
-     score = percentile_rank(score_raw) * 1000
+
+3. **Normalize to 0–1000 Range**  
+Each wallet’s raw score is converted into a percentile rank and scaled:
+final_score = percentile_rank(score_raw) * 1000
+
+
+This ensures a consistent, relative scoring between 0 (highest risk) and 1000 (lowest risk).
+
+---
+
+## 🔍 Justification of Risk Indicators
+
+- **Activity & Engagement**: High tx count and approvals suggest real users, not dormant or malicious wallets.
+- **Diversity**: Interacting with multiple tokens implies broader exposure and better understanding of protocol mechanics.
+- **Economic Commitment**: More gas spent usually reflects deeper protocol engagement.
+- **Consistency**: Long-term users are generally more reliable and less opportunistic.
+
+---
+
+## 🧱 Scalability
+
+- **Protocol-Agnostic**: Can be extended to Aave, Uniswap, etc., with minimal modifications.
+- **Transparent**: Interpretable features and scoring logic support human-in-the-loop audits.
+- **Expandable**: Can be upgraded using ML models or clustering for advanced risk profiling.
+
+---
+
+## ✅ Output
+
+Final output is a DataFrame with wallet IDs and scores:
+
+| wallet_id | score  |
+|-----------|--------|
+| 0x123...  | 742.4  |
+| 0xabc...  | 315.2  |
+| ...       | ...    |
+
+This score can be used in credit allocation, trust modeling, or DeFi onboarding strategies.
+
+---
+
+## 👨‍💻 Author
+
+Internship Submission – Round 2  
+**Wallet Risk Scoring Based on Compound Protocol**  
+*Submitted by: Mohammed Zubin Essudeen*
