@@ -1,0 +1,8 @@
+web3
+requests
+pandas
+numpy
+tqdm
+scikit-learn
+matplotlib
+seaborn
